@@ -14,7 +14,7 @@
   </style>
 </head>
 <body>
-  <h1>News Feeds#2</h1>
+  <h1>News Feeds3</h1>
   <div id="news-container"></div>
 
   <script>
@@ -33,9 +33,15 @@
       });
     }
 
-    const script = document.createElement('script');
-    script.src = 'https://script.google.com/macros/s/AKfycbycvc6jG-dBtf-l45Ac3Ogi2-NejsB0d3_SLWbK6pa7XhGQglc09oqUdhyAwHy7DnU/exec?callback=handleResponse';
-    document.body.appendChild(script);
+    const url = 'https://script.google.com/macros/s/AKfycbycvc6jG-dBtf-l45Ac3Ogi2-NejsB0d3_SLWbK6pa7XhGQglc09oqUdhyAwHy7DnU/exec';
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const feeds = data.feeds;
+        handleResponse(feeds);
+      })
+      .catch(error => console.error(error));
   </script>
 </body>
 </html>
