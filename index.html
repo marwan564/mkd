@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>News Feeds1</title>
+  <title>News Feeds</title>
   <style>
     .news-item {
       margin-bottom: 20px;
@@ -14,17 +14,13 @@
   </style>
 </head>
 <body>
-  <h1>News Feeds</h1>
+  <h1>News Feeds#2</h1>
   <div id="news-container"></div>
 
   <script>
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzdbIH5BuUJO0yHwnek0BlSUIlAjzoJVuPZaJ64U6FKjsFtMIeBg41rZh4SOIDqL0E/exec';
-
-    function handleResponse(response) {
-      const data = response.slice(0, 10);
-
+    function handleResponse(data) {
       const newsContainer = document.getElementById('news-container');
-      data.forEach(item => {
+      data.slice(0, 10).forEach(item => {
         const newsItem = document.createElement('div');
         newsItem.className = 'news-item';
 
@@ -37,13 +33,9 @@
       });
     }
 
-    function loadNews() {
-      const script = document.createElement('script');
-      script.src = `${scriptUrl}?callback=handleResponse`;
-      document.body.appendChild(script);
-    }
-
-    loadNews();
+    const script = document.createElement('script');
+    script.src = 'https://script.google.com/macros/s/AKfycbycvc6jG-dBtf-l45Ac3Ogi2-NejsB0d3_SLWbK6pa7XhGQglc09oqUdhyAwHy7DnU/exec?callback=handleResponse';
+    document.body.appendChild(script);
   </script>
 </body>
 </html>
