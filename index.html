@@ -14,13 +14,13 @@
   </style>
 </head>
 <body>
-  <h1>News Feeds3</h1>
+  <h1>News Feeds#6</h1>
   <div id="news-container"></div>
 
   <script>
     function handleResponse(data) {
       const newsContainer = document.getElementById('news-container');
-      data.slice(0, 10).forEach(item => {
+      data.values.slice(0, 10).forEach(item => {
         const newsItem = document.createElement('div');
         newsItem.className = 'news-item';
 
@@ -33,12 +33,14 @@
       });
     }
 
-    const url = 'https://script.google.com/macros/s/AKfycbycvc6jG-dBtf-l45Ac3Ogi2-NejsB0d3_SLWbK6pa7XhGQglc09oqUdhyAwHy7DnU/exec';
+    const sheetId = '1dH1JOwgYeNFW3e-iWHSpOmaOlYT1N9PR3_XckpdcLWA';
+
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1`;
 
     fetch(url)
       .then(response => response.json())
       .then(data => {
-        const feeds = data.feeds;
+        const feeds = data;
         handleResponse(feeds);
       })
       .catch(error => console.error(error));
