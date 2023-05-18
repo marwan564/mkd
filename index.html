@@ -18,28 +18,32 @@
   <div id="news-container"></div>
 
   <script>
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = 'https://script.google.com/macros/s/AKfycbzdbIH5BuUJO0yHwnek0BlSUIlAjzoJVuPZaJ64U6FKjsFtMIeBg41rZh4SOIDqL0E/exec';
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbzdbIH5BuUJO0yHwnek0BlSUIlAjzoJVuPZaJ64U6FKjsFtMIeBg41rZh4SOIDqL0E/exec';
 
-    fetch(proxyUrl + apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        const newsContainer = document.getElementById('news-container');
-        data.forEach(item => {
-          const newsItem = document.createElement('div');
-          newsItem.className = 'news-item';
+    function handleResponse(response) {
+      const data = response.slice(0, 10);
 
-          const newsTitle = document.createElement('h2');
-          newsTitle.className = 'news-title';
-          newsTitle.textContent = item.title;
+      const newsContainer = document.getElementById('news-container');
+      data.forEach(item => {
+        const newsItem = document.createElement('div');
+        newsItem.className = 'news-item';
 
-          newsItem.appendChild(newsTitle);
-          newsContainer.appendChild(newsItem);
-        });
-      })
-      .catch(error => {
-        console.error('Error:', error);
+        const newsTitle = document.createElement('h2');
+        newsTitle.className = 'news-title';
+        newsTitle.textContent = item[0];
+
+        newsItem.appendChild(newsTitle);
+        newsContainer.appendChild(newsItem);
       });
+    }
+
+    function loadNews() {
+      const script = document.createElement('script');
+      script.src = `${scriptUrl}?callback=handleResponse`;
+      document.body.appendChild(script);
+    }
+
+    loadNews();
   </script>
 </body>
 </html>
