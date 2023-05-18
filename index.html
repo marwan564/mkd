@@ -1,35 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>News Feeds</title>
+  <title>Marwan's Portal</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
     .news-item {
       margin-bottom: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-left: 6px solid #007bff;
     }
+
     .news-title {
+      font-size: 20px;
       font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .news-content {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .flash-news {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: red;
+      color: white;
+      font-size: 18px;
+      padding: 10px;
+      animation: scrollFlashNews 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes scrollFlashNews {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
   </style>
 </head>
 <body>
-  <h1>News Feeds#21</h1>
-  <div id="news-container"></div>
+  <div class="container">
+    <h1>Marwan's News Portal</h1>
+    <div id="news-container"></div>
+  </div>
+
+  <div class="flash-news">
+    <span>This is a flash news - Breaking News!</span>
+  </div>
 
   <script>
     function handleResponse(data) {
       const newsContainer = document.getElementById('news-container');
-      data.values.slice(0, 10).forEach(item => {
+      data.values.forEach(item => {
         const newsItem = document.createElement('div');
         newsItem.className = 'news-item';
 
-        const newsTitle = document.createElement('h2');
-        newsTitle.className = 'news-title';
-        newsTitle.textContent = item[0];
+        for (let i = 0; i < item.length; i++) {
+          const columnValue = item[i].trim();
+          if (columnValue !== '') {
+            const columnElement = document.createElement('p');
+            columnElement.className = 'news-content';
+            columnElement.textContent = columnValue;
+            newsItem.appendChild(columnElement);
+          }
+        }
 
-        newsItem.appendChild(newsTitle);
-        newsContainer.appendChild(newsItem);
+        if (newsItem.childNodes.length > 0) {
+          newsContainer.appendChild(newsItem);
+        }
       });
     }
 
