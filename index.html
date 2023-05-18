@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News Feeds</title>
+  <style>
+    .news-item {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .news-title {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>News Feeds</h1>
+  <div id="news-container"></div>
+
+  <script>
+    fetch('https://script.google.com/macros/s/AKfycbzdbIH5BuUJO0yHwnek0BlSUIlAjzoJVuPZaJ64U6FKjsFtMIeBg41rZh4SOIDqL0E/exec')
+      .then(response => response.json())
+      .then(data => {
+        const newsContainer = document.getElementById('news-container');
+        data.forEach(item => {
+          const newsItem = document.createElement('div');
+          newsItem.className = 'news-item';
+
+          const newsTitle = document.createElement('h2');
+          newsTitle.className = 'news-title';
+          newsTitle.textContent = item.title;
+
+          newsItem.appendChild(newsTitle);
+          newsContainer.appendChild(newsItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  </script>
+</body>
+</html>
