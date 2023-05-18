@@ -18,7 +18,10 @@
   <div id="news-container"></div>
 
   <script>
-    fetch('https://script.google.com/macros/s/AKfycbzdbIH5BuUJO0yHwnek0BlSUIlAjzoJVuPZaJ64U6FKjsFtMIeBg41rZh4SOIDqL0E/exec')
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    const apiUrl = 'https://script.google.com/macros/s/AKfycbzdbIH5BuUJO0yHwnek0BlSUIlAjzoJVuPZaJ64U6FKjsFtMIeBg41rZh4SOIDqL0E/exec';
+
+    fetch(proxyUrl + apiUrl)
       .then(response => response.json())
       .then(data => {
         const newsContainer = document.getElementById('news-container');
