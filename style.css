@@ -59,10 +59,11 @@ h1 {
 @media only screen and (max-width: 768px) {
   h1 {
     text-align: center;
+    font-size: 28px; /* Increased text size for phones */
   }
   
   .banner {
-    background-color: #007bff;
+    background-color: #888; /* Gray color */
     color: #fff;
     padding: 10px;
     display: flex;
