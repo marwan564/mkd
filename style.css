@@ -14,7 +14,7 @@ body {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -58,10 +58,11 @@ h1 {
 
 
 .banner {
-  background-color: #888;
+  background-color: blue; /* Greyish black color */
   color: #fff;
   padding: 10px;
   text-align: center;
+
 }
 
 .banner .hamburger-icon {
@@ -73,10 +74,7 @@ h1 {
 }
 
 @media only screen and (max-width: 768px) {
-  h1 {
-    font-size: 28px;
-  }
-  
+
   .banner {
     position: fixed;
     top: 0;
