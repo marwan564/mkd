@@ -42,23 +42,38 @@
       color: #555;
     }
 
-    .flash-news {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: red;
-      color: white;
-      font-size: 18px;
-      padding: 10px;
-      animation: scrollFlashNews 20s linear infinite;
-      white-space: nowrap;
-    }
 
     @keyframes scrollFlashNews {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
+
+.flash-news {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  font-size: 24px; /* Increased font size */
+  padding: 20px; /* Increased padding */
+  animation: scrollFlashNews 20s linear infinite;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 768px) { /* Adjust for tablets */
+  .flash-news {
+    font-size: 40px; /* Increased font size for tablets */
+    padding: 40px; /* Increased padding for tablets */
+  }
+}
+
+@media only screen and (max-width: 480px) { /* Adjust for phones */
+  .flash-news {
+    font-size: 40px; /* Increased font size for phones */
+    padding: 40px; /* Increased padding for phones */
+  }
+}
   </style>
 </head>
 <body>
